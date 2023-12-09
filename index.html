@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quote Generator</title>
+    <link rel="stylesheet" href="index.css" />
+
+  </head>
+  <body>
+    <div class="main">
+      <h1>Ziongate Quote Generator</h1>
+      <div class="text">
+       <button onclick="getQuote()"> Generate Quote</button>
+      </div>
+      <div class="quote-card">
+        <p class="quoteContainer">Quote </p>
+        <p>authour</p>
+      </div>
+    </div>
+    <script>
+    //    function getQuote() {
+
+    //         axios.get('https://api.quotable.io/random').then(res => {
+    //     console.log(res);
+    //    }).catch(err => {
+    //     console.log(err)
+    //    })
+
+    //     }
+    function  getQuote() {
+        fetch('https://api.quotable.io/random')
+        .then(function(res) {
+            return res.json();
+        }).then(function(data) {
+            //access the container element
+            let quoteContainer = document.querySelector('.quote-card');
+
+            //clear the cont
+            quoteContainer.innerHTML = '';
+
+            //update  the text content of the p tag with the quote
+            quoteContainer.textContent = data.content;
+            console.log(data.content);
+
+        }).catch(function(err) {
+            console.log(err);
+        });
+    }
+    </script>
+  </body>
+</html>
